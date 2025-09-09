@@ -794,7 +794,7 @@ class PromptCompressor:
                 chunk_end_tokens.append(token_map[c])
         chunk_end_tokens = set(chunk_end_tokens)
 
-        if type(context) == str:
+        if type(context) is str:
             context = [context]
         context = copy.deepcopy(context)
 
@@ -968,6 +968,8 @@ class PromptCompressor:
                 [f"{word}{label_sep}{label}" for word, label in zip(words, labels)]
             )
             res["fn_labeled_original_prompt"] = word_label_lines
+            res["word_list"] = word_list
+            res["word_label_list"] = word_label_list
         return res
 
     def get_token_length(
